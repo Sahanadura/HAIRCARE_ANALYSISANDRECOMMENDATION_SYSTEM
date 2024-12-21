@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="../css/loginPage.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <section class="loginPage">
+        <div class="container" data-tilt data-tilt-glare="true" data-tilt-max-glare="0.2">
+        <form action="">
+          <h2>Login:</h2>
+          <div class="inputbox">
+            <input type="text" placeholder="Username/Email" class="input" required>
+            <i class="fas fa-user"></i>
+          </div>
+          <div class="inputbox">
+            <input type="password" placeholder="password" class="input" required>
+            <i class="fas fa-lock"></i>
+          </div>
+          <div class="forgetpassword">
+            <label for=" ">
+               <input type="checkbox">
+               <span>Remember me</span>
+            </label>
+            <div class="psw"><a href="../html/forgotPassword.html ">Forgot Password</a></div>
+          </div>
+          <input type="submit" value="Login" class="input login-btn">
+          <div class="signup">
+            <span>Don't have an account?<a href="../html/signupPage.html">Signup</a></span>
+          </div>
+      </form>
+      </div>
+      </section>
+      <script type="module"src="../javaScript/loginPage.js"></script>
+</body>
+</html>

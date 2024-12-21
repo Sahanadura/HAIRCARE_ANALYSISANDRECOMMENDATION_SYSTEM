@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hair Quiz</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            background-color: #f5f5f5;
+        }
+        .full {
+            width: 100%;
+            max-width: 600px;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+        .stepper {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+            margin-bottom: 30px;
+        }
+        .step {
+            width: 30px;
+            height: 30px;
+            border: 2px solid #000;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            background-color: #fff;
+            font-weight: bold;
+            font-size: 14px;
+        }
+        .step.active {
+            background-color: #ffc0cb;
+        }
+        .step:not(:last-child)::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 100%;
+            width: calc(100% - 40px);
+            height: 2px;
+            background-color: #000;
+            transform: translateY(-50%);
+        }
+        .fontu {
+            font-size: 24px;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .size {
+            height: 50px;
+            width: 100%;
+            border-radius: 25px;
+            border: 2px solid #ffc0cb;
+            text-align: center;
+            font-size: 18px;
+            margin-bottom: 15px;
+            background-color: #fff;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        .size:hover {
+            background-color: #ffc0cb;
+        }
+        .button {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 20px;
+            width: 100%;
+        }
+        .previous, .next {
+            height: 50px;
+            width: 48%;
+            border-radius: 25px;
+            border: 2px solid #ffc0cb;
+            text-align: center;
+            font-size: 18px;
+            background-color: #fff;
+            cursor: pointer;
+            transition: background-color 0.3s, color 0.3s;
+        }
+        .previous:hover, .next:hover {
+            background-color: #000;
+            color: #fff;
+            border-color: #000;
+        }
+        .hairquestions {
+            text-align: center;
+            margin-top: 20px;
+        }
+        .stepuh {
+            display: none;
+        }
+        .act {
+            display: block;
+        }
+    </style>
+</head>
+<body>
+    <section class="full">
+        <div class="stepper">
+            <div class="step active">1</div>
+            <div class="step">2</div>
+            <div class="step">3</div>
+            <div class="step">4</div>
+            <div class="step">5</div>
+            <div class="step">6</div>
+            <div class="step">7</div>
+        </div>
+
+        <section class="hairquestions stepuh act" id="step1">
+            <p class="fontu">What is your Hair Density?</p>
+            <form>
+                <button type="button" class="fine size" id="fine">Fine</button>
+                <button type="button" class="medium size" id="medium">Medium</button>
+                <button type="button" class="thick size" id="thick">Thick</button>
+                <div class="button">
+                    <button type="button" class="previous" id="previous1">Previous</button>
+                    <button type="button" class="next" id="next1">Next</button>
+                </div>
+            </form>
+        </section>
+
+        <section class="hairquestions stepuh" id="step2">
+            <p class="fontu">My Hair Looks like?</p>
+            <form>
+                <button type="button" class="wavy size" id="wavy">Wavy</button>
+                <button type="button" class="curly size" id="curly">Curly</button>
+                <button type="button" class="straight size" id="straight">Straight</button>
+                <div class="button">
+                    <button type="button" class="previous" id="previous2">Previous</button>
+                    <button type="button" class="next" id="next2">Next</button>
+                </div>
+            </form>
+        </section>
+
+        <section class="hairquestions stepuh" id="step3">
+            <p class="fontu">My main concern with hair is</p>
+            <form>
+                <button type="button" class="frizz size" id="frizz">Frizz</button>
+                <button type="button" class="dull size" id="dull">dull,dry,tangled</button>
+                <button type="button" class="damaged size" id="damaged">Damaged and in recovery</button>
+                <div class="button">
+                    <button type="button" class="previous" id="previous3">Previous</button>
+                    <button type="button" class="next" id="next3">Next</button>
+                </div>
+            </form>
+        </section>
+
+        <section class="hairquestions stepuh" id="step4">
+            <p class="fontu">My Scalp feels?</p>
+            <form>
+                <button type="button" class="dry size" id="dry">Dry</button>
+                <button type="button" class="oily size" id="oily">Oily</button>
+                <button type="button" class="dandruff size" id="dandruff">Dandruff Prone</button>
+                <button type="button" class="irritated size" id="irritated">Irritated/Sensitive</button>
+                <div class="button">
+                    <button type="button" class="previous" id="previous4">Previous</button>
+                    <button type="button" class="next" id="next4">Next</button>
+                </div>
+            </form>
+        </section>
+
+        <section class="hairquestions stepuh" id="step5">
+            <p class="fontu">My Styling routine is</p>
+            <form>
+                <button type="button" class="harsh size" id="harsh">Blow Drying(Harsh)</button>
+                <button type="button" class="straightening size" id="straightening">Straightening(Extra Harsh)</button>
+                <button type="button" class="curling size" id="curling">Curling</button>
+                <div class="button">
+                    <button type="button" class="previous" id="previous5">Previous</button>
+                    <button type="button" class="next" id="next5">Next</button>
+                </div>
+            </form>
+        </section>
+
+        <section class="hairquestions stepuh" id="step6">
+            <p class="fontu">I do/have done the following to my hair:</p>
+            <form>
+                <button type="button" class="color size" id="color">Color</button>
+                <button type="button" class="keratin size" id="keratin">Keratin/Rebonding</button>
+                <button type="button" class="blow-dry size" id="blowdry">The ocassional blow-dry</button>
+                <div class="button">
+                    <button type="button" class="previous" id="previous6">Previous</button>
+                    <button type="button" class="next" id="next6">Next</button>
+                </div>
+            </form>
+        </section>
+
+        <section class="hairquestions stepuh" id="step7">
+            <p class="fontu">What are your hair goals?</p>
+            <form>
+                <button type="button" class="frizz-free size" id="frizzfree">Frizz Free Shiny Hair</button>
+                <button type="button" class="smoothen size" id="smoothen">Smoothen Hair</button>
+                <button type="button" class="volume size" id="volume">Volume</button>
+                <button type="button" class="lesshairfall size" id="lesshairfall">Less Hair Fall+Breakage</button>
+                <button type="button" class="healthyhair size" id="healthyhair">Strong ,Healthy hair and scalp</button>
+                <div class="button">
+                    <button type="button" class="previous" id="previous7">Previous</button>
+                    <button type="button" class="next" id="next7">Next</button>
+                </div>
+            </form>
+        </section>
+    </section>
+
+    <script>
+        const steps = document.querySelectorAll('.step');
+        const sections = document.querySelectorAll('.hairquestions');
+        const nextButtons = document.querySelectorAll('.next');
+        const prevButtons = document.querySelectorAll('.previous');
+        const answerButtons = document.querySelectorAll('.size');
+        const previous1 = document.getElementById('previous1');
+        const next7 = document.getElementById("next7");
+
+        let currentStep = 0;
+        const details = new Array(7);
+
+        function updateStep(index) {
+            steps.forEach((step, i) => {
+                if (i <= index) {
+                    step.classList.add('active');
+                } else {
+                    step.classList.remove('active');
+                }
+            });
+        }
+
+        previous1.addEventListener("click", (e) => {
+            e.preventDefault();
+            window.location.href = '../html/hairquizhome.html';
+        });
+
+        function showSection(index) {
+            sections.forEach((section, i) => {
+                if (i === index) {
+                    section.classList.add('act');
+                } else {
+                    section.classList.remove('act');
+                }
+            });
+        }
+
+        nextButtons.forEach((button, index) => {
+            button.addEventListener('click', (e) => {
+                e.preventDefault();
+                if (currentStep < 6) {
+                    currentStep++;
+                    updateStep(currentStep);
+                    showSection(currentStep);
+                }
+            });
+        });
+
+        prevButtons.forEach((button, index) => {
+            button.addEventListener('click', (e) => {
+                e.preventDefault();
+                if (currentStep > 0) {
+                    currentStep--;
+                    updateStep(currentStep);
+                    showSection(currentStep);
+                }
+            });
+        });
+
+        next7.addEventListener("click", (e) => {
+            e.preventDefault();
+            console.log("Next button clicked");
+            console.log("Current details:", details);
+            
+            if (details.every(answer => answer !== undefined)) {
+                localStorage.setItem('hairQuizAnswers', JSON.stringify(details));
+                console.log("Redirecting to results page");
+                window.location.href = '../html/hair-quiz-results.html';
+            } else {
+                alert("Please ensure all questions are answered before proceeding.");
+                details.forEach((answer, index) => {
+                    if (answer === undefined) {
+                        console.log(`Question ${index + 1} is unanswered`);
+                    }
+                });
+            }
+        });
+
+        sections.forEach((section, sectionIndex) => {
+            const buttons = section.querySelectorAll('.size');
+            buttons.forEach(button => {
+                button.addEventListener('click', () => {
+                    buttons.forEach(b => b.style.backgroundColor = 'white');
+                    button.style.backgroundColor = 'pink';
+                    details[sectionIndex] = button.id;
+                    console.log(`Question ${sectionIndex + 1} answered:`, button.id);
+                });
+            });
+        });
+
+        details.fill(undefined);
+        console.log("Details array initialized:", details);
+    </script>
+</body>
+</html>

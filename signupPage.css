@@ -1,0 +1,120 @@
+.signupPage {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-image: url("../images and videos/login2.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    min-height: 100vh;
+}
+
+.container {
+    background-color: rgba(254, 254, 254, 0.1);
+    width: 400px;
+    padding: 30px 0;
+    color: #fff;
+    text-align: center;
+    border: 3px solid rgba(254, 254, 254, 0.7);
+    border-radius: 25px;
+    box-shadow: 0 0 30px rgba(0, 0, 0, 0.7);
+    backdrop-filter: blur(10px);
+}
+
+form {
+    position: relative;
+    width: 100%;
+}
+
+h2 {
+    font-size: 2.5em;
+    font-weight: 800;
+    margin-bottom: 15px;
+}
+
+.inputbox {
+    position: relative;
+    width: 80%;
+    margin: 8px auto;
+}
+
+.inputbox .input, .input {
+    width: 100%;
+    height: 50px;
+    outline: none;
+    font-size: 1em;
+    border: 3px solid rgba(254, 254, 254, 0.6);
+    border-radius: 50px;
+    background: transparent;
+    color: #fff;
+    padding: 0 15px 0 40px;
+    transition: 0.1s ease-in;
+    box-sizing: border-box;
+}
+
+.inputbox .input:focus {
+    border: 3px solid #fff;
+    background: rgba(0, 0, 0, 0.5);
+}
+
+.input::placeholder {
+    color: #fff;
+}
+
+.inputbox i {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 1.4em;
+    left: 12px;
+}
+
+.terms {
+    margin: 15px 0;
+    font-size: 1em;
+}
+
+.terms label {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.terms input[type="checkbox"] {
+    margin-right: 10px;
+    scale: 1;
+    accent-color: #2e90c1;
+}
+
+.signup-btn {
+    color: #222;
+    background: #fff;
+    font-size: 1.4em;
+    border: none;
+    margin-top: 15px;
+    cursor: pointer;
+    padding: 0;
+    transition: 0.2s ease-in-out;
+    width:80%;
+    height: 50px;
+    border-radius: 50px;
+}
+
+.signup-btn:hover {
+    color: #fff;
+    background: #7075fa;
+}
+
+.login {
+    margin-top: 15px;
+    font-size: 1em;
+}
+
+.login a {
+    color: rgb(189, 100, 11);
+    text-decoration: none;
+}
+
+.login a:hover {
+    text-decoration: underline;
+}
+

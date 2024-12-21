@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Up</title>
+    <link rel="stylesheet" href="../css/signupPage.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <section class="signupPage">
+        <div class="container" data-tilt data-tilt-glare="true" data-tilt-max-glare="0.2">
+            <form action="">
+                <h2>Sign Up</h2>
+                <div class="inputbox">
+                    <input type="text" placeholder="Full Name" class="input" required>
+                    <i class="fas fa-user"></i>
+                </div>
+                <div class="inputbox">
+                    <input type="email" placeholder="Email" class="input" required>
+                    <i class="fas fa-envelope"></i>
+                </div>
+                <div class="inputbox">
+                    <input type="password" placeholder="Password" class="input" required>
+                    <i class="fas fa-lock"></i>
+                </div>
+                <div class="inputbox">
+                    <input type="password" placeholder="Confirm Password" class="input" required>
+                    <i class="fas fa-lock"></i>
+                </div>
+                <div class="terms">
+                    <label for="terms">
+                        <input type="checkbox" id="terms" required>
+                        <span>I agree to the Terms and Conditions</span>
+                    </label>
+                </div>
+                <input type="submit" value="Sign Up" class="input signup-btn">
+                <div class="login">
+                    <span>Already have an account? <a href="../html/loginPage.html">Login</a></span>
+                </div>
+            </form>
+        </div>
+    </section>
+    <script type="module" src="../javaScript/loginPage.js"></script>
+</body>
+</html>

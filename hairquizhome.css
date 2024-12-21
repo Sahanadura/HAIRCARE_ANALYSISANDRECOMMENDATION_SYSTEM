@@ -1,0 +1,44 @@
+.quizoutline{
+    height:50rem;
+    width:50rem;
+    display:flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    margin-left:300px;
+    gap:200px;
+}
+.form{
+    
+    height: 20rem;
+    gap:500px;
+}
+.form input :first-of-type{
+    height:5rem;
+    width:2rem;
+}
+.input{
+    height:3rem;
+    width:30rem;
+    border-radius: 30px;
+    text-align:center;
+    border-color: pink;
+    font-size: 1rem;
+   
+}
+.sub{
+    color:white;
+    background-color: black;
+}
+.words{
+    font-size: 20px;
+}
+.heading{
+    font-size:40px;
+}
+.img{
+   margin-top:100px;
+   height:400px;
+   width:200px;
+  
+}

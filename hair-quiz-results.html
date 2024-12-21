@@ -1,0 +1,285 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../css/result.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
+    <title>Hair Quiz Results</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
+        .container {
+            max-width: 1500px;
+            margin: 0 auto;
+            background-color: #fff;
+            padding: 30px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            margin-bottom: 20px;
+        }
+        h1 {
+            color: #333;
+        }
+        .result-item {
+            margin-bottom: 20px;
+        }
+        .result-item h2 {
+            color: #ffc0cb;
+        }
+        .recommendations {
+            background-color: #f0f0f0;
+            padding: 15px;
+            border-radius: 5px;
+            margin-top: 20px;
+        }
+        .recommendations h2 {
+            color: #333;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Your Hair Quiz Results</h1>
+        <div id="results"></div>
+    </div>
+
+    <section class="results">
+        <img src="../images and videos/bomma 2.jpg">
+        <p class="font">Your Results are here<br>
+        <span class="font1">&nbsp;&nbsp;&nbsp;&nbsp;Suggested Products for You</span></p>
+        
+        <div id="productRecommendations"></div>
+    </section>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const resultsContainer = document.getElementById('results');
+            const productRecommendationsContainer = document.getElementById('productRecommendations');
+            const answers = JSON.parse(localStorage.getItem('hairQuizAnswers'));
+        
+            if (!answers) {
+                resultsContainer.innerHTML = '<p>No results found. Please take the quiz first.</p>';
+                return;
+            }
+        
+            const questions = [
+                "Hair Density",
+                "Hair Type",
+                "Main Concern",
+                "Scalp Condition",
+                "Styling Routine",
+                "Hair Treatments",
+                "Hair Goals"
+            ];
+        
+            let resultsHTML = '';
+        
+            answers.forEach((answer, index) => {
+                resultsHTML += `
+                    <div class="result-item">
+                        <h2>${questions[index]}</h2>
+                        <p>${answer}</p>
+                    </div>
+                `;
+            });
+        
+            resultsHTML += '<div class="recommendations">';
+            resultsHTML += '<h2>Personalized Recommendations</h2>';
+            resultsHTML += getRecommendations(answers);
+            resultsHTML += '</div>';
+        
+            resultsContainer.innerHTML = resultsHTML;
+        
+            // Generate product recommendations
+            const productRecommendationsHTML = generateProductRecommendations(answers);
+            productRecommendationsContainer.innerHTML = productRecommendationsHTML;
+        });
+        
+        function getRecommendations(answers) {
+            let recommendations = '<ul>';
+        
+            // Hair Density
+            if (answers[0] === 'fine') {
+                recommendations += '<li>Use volumizing shampoo and conditioner</li>';
+                recommendations += '<li>Try a lightweight leave-in conditioner</li>';
+            } else if (answers[0] === 'medium') {
+                recommendations += '<li>Use balanced shampoo and conditioner for your hair type</li>';
+                recommendations += '<li>Regular trims can help maintain hair health and shape</li>';
+            } else if (answers[0] === 'thick') {
+                recommendations += '<li>Use moisturizing and smoothing products</li>';
+                recommendations += '<li>Try hair oils or serums to manage frizz and add shine</li>';
+            }
+        
+            // Hair Type
+            if (answers[1] === 'wavy') {
+                recommendations += '<li>Use products designed for wavy hair to enhance natural texture</li>';
+                recommendations += '<li>Try the "scrunching" technique when applying styling products</li>';
+            } else if (answers[1] === 'curly') {
+                recommendations += '<li>Use curl-defining products</li>';
+                recommendations += '<li>Avoid heat styling to maintain curl pattern</li>';
+                recommendations += '<li>Consider the "Curly Girl Method" for hair care</li>';
+            } else if (answers[1] === 'straight') {
+                recommendations += '<li>Use smoothing serums to add shine</li>';
+                recommendations += '<li>Try volumizing products at the roots for added body</li>';
+            }
+        
+            // Main Concern
+            if (answers[2] === 'frizz') {
+                recommendations += '<li>Use anti-frizz serums or leave-in conditioners</li>';
+                recommendations += '<li>Try a silk pillowcase to reduce friction while sleeping</li>';
+                recommendations += '<li>Use a microfiber towel to dry your hair</li>';
+            } else if (answers[2] === 'dull') {
+                recommendations += '<li>Use clarifying shampoo once a week to remove buildup</li>';
+                recommendations += '<li>Try a hair gloss treatment for added shine</li>';
+                recommendations += '<li>Use a boar bristle brush to distribute natural oils</li>';
+            } else if (answers[2] === 'damaged') {
+                recommendations += '<li>Use protein treatments to strengthen hair</li>';
+                recommendations += '<li>Minimize heat styling and chemical treatments</li>';
+                recommendations += '<li>Consider a trim to remove split ends</li>';
+            }
+        
+            // Scalp Condition
+            if (answers[3] === 'dry') {
+                recommendations += '<li>Avoid hot water when washing your hair</li>';
+                recommendations += '<li>Try a scalp massage to stimulate natural oil production</li>';
+            } else if (answers[3] === 'oily') {
+                recommendations += '<li>Use a clarifying shampoo once a week</li>';
+                recommendations += '<li>Avoid applying conditioner to the scalp</li>';
+            } else if (answers[3] === 'dandruff') {
+                recommendations += '<li>Use an anti-dandruff shampoo with active ingredients like zinc pyrithione or ketoconazole</li>';
+                recommendations += '<li>Avoid scratching your scalp</li>';
+            } else if (answers[3] === 'irritated') {
+                recommendations += '<li>Avoid very hot water when washing your hair</li>';
+                recommendations += '<li>Consider consulting a dermatologist for personalized advice</li>';
+            }
+        
+            // Styling Routine
+            if (answers[4] === 'harsh') {
+                recommendations += '<li>Use heat protectant products before blow-drying</li>';
+                recommendations += '<li>Consider air-drying your hair when possible</li>';
+            } else if (answers[4] === 'straightening') {
+                recommendations += '<li>Consider reducing the frequency of heat styling</li>';
+                recommendations += '<li>Try heatless straightening methods, like overnight braids</li>';
+            } else if (answers[4] === 'curling') {
+                recommendations += '<li>Try heatless curling methods, like foam rollers or sock curls</li>';
+                recommendations += '<li>Allow curls to cool completely before brushing or styling</li>';
+            }
+        
+            // Hair Treatments
+            if (answers[5] === 'color') {
+                recommendations += '<li>Use color-safe shampoo and conditioner</li>';
+                recommendations += '<li>Consider color-depositing conditioners to maintain vibrancy</li>';
+            } else if (answers[5] === 'keratin') {
+                recommendations += '<li>Use sulfate-free shampoo to prolong the treatment</li>';
+                recommendations += '<li>Use a silk pillowcase to reduce friction</li>';
+            } else if (answers[5] === 'blowdry') {
+                recommendations += '<li>Use the cool shot button on your dryer to set your style</li>';
+                recommendations += '<li>Consider a ionic blow dryer to reduce frizz and drying time</li>';
+            }
+        
+            // Hair Goals
+            if (answers[6] === 'frizzfree') {
+                recommendations += '<li>Use anti-frizz serums or oils</li>';
+                recommendations += '<li>Try a leave-in conditioner for added moisture</li>';
+            } else if (answers[6] === 'smoothen') {
+                recommendations += '<li>Use smoothing shampoo and conditioner</li>';
+                recommendations += '<li>Try a weekly hair mask for extra smoothness</li>';
+            } else if (answers[6] === 'volume') {
+                recommendations += '<li>Use a volumizing mousse before blow-drying</li>';
+                recommendations += '<li>Try teasing the hair at the crown for added volume</li>';
+            } else if (answers[6] === 'lesshairfall') {
+                recommendations += '<li>Consider taking biotin supplements (consult with a doctor first)</li>';
+                recommendations += '<li>Be gentle when brushing and avoid tight hairstyles</li>';
+            } else if (answers[6] === 'healthyhair') {
+                recommendations += '<li>Maintain a balanced diet rich in vitamins and minerals</li>';
+                recommendations += '<li>Minimize heat styling and chemical treatments</li>';
+            }
+        
+            recommendations += '</ul>';
+            return recommendations;
+        }
+        
+        function generateProductRecommendations(answers) {
+            let recommendationsHTML = '<section class="grid">';
+        
+            // Add product recommendations based on answers
+            if (answers[0] === 'fine') {
+                recommendationsHTML += `
+                    <div class="box">
+                        <img class="height" src="../images and videos/Advanced hairgrowth serum.png">
+                        <div class="move">
+                            <p>Hair Serum with Rosemary</p>
+                            <div class="rating">
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                            </div>
+                            <div class="price">
+                                ₹499
+                            </div>
+                            <button type="submit" class="btn"> Add to Cart</button>
+                        </div>
+                    </div>
+                `;
+            }
+        
+            if (answers[1] === 'wavy') {
+                recommendationsHTML += `
+                    <div class="box">
+                        <img class="height" src="../images and videos/advanced hairfall control shampoo.png">
+                        <div class="move">
+                            <p>Shampoo with Rosemary</p>
+                            <div class="rating">
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                            </div>
+                            <div class="price">
+                                ₹399
+                            </div>
+                            <button type="submit" class="btn"> Add to Cart</button>
+                        </div>
+                    </div>
+                `;
+            }
+        
+            if (answers[6] === 'frizzfree') {
+                recommendationsHTML += `
+                    <div class="box">
+                        <img class="height" src="../images and videos/advanced hairfall control conditioner.png">
+                        <div class="move">
+                            <p>Conditioner with Keratin</p>
+                            <div class="rating">
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                            </div>
+                            <div class="price">
+                                ₹399
+                            </div>
+                            <button type="submit" class="btn"> Add to Cart</button>
+                        </div>
+                    </div>
+                `;
+            }
+        
+            recommendationsHTML += '</section>';
+            return recommendationsHTML;
+        }
+    </script>
+</body>
+</html>
